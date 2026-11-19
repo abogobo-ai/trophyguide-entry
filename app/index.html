@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leonida Platinum Atlas — GTA VI Trophy Guide</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="masthead-title">
+      <p class="kicker">Grand Theft Auto VI &middot; PlayStation 5 &middot; The Official 55 Trophies</p>
+      <h1>Leonida Platinum Atlas</h1>
+      <p class="subtitle">Every trophy, its guide in our own words, a six-chapter road to platinum — and the one trophy you can miss forever.</p>
+    </div>
+    <aside class="progress-card" id="progressCard" aria-label="Progress to platinum">
+      <div class="progress-big"><span id="earnedCount">0</span><span class="of">/ 55</span></div>
+      <div class="progress-bar"><div id="progressFill"></div></div>
+      <p class="progress-pct" id="progressPct">0% to platinum</p>
+      <dl class="grade-counts">
+        <div><dt>Platinum</dt><dd id="countPlatinum">0 / 1</dd></div>
+        <div><dt>Gold</dt><dd id="countGold">0 / 2</dd></div>
+        <div><dt>Silver</dt><dd id="countSilver">0 / 6</dd></div>
+        <div><dt>Bronze</dt><dd id="countBronze">0 / 46</dd></div>
+      </dl>
+      <p class="hours-left" id="hoursLeft">≈ 200 h left to platinum</p>
+      <p class="next-up" id="nextUp">Next up: —</p>
+    </aside>
+  </div>
+</header>
+<nav class="tabs" role="tablist" aria-label="Guide sections">
+  <button class="tab active" data-tab="checklist" role="tab" aria-selected="true">Checklist</button>
+  <button class="tab" data-tab="roadmap" role="tab" aria-selected="false">Roadmap to Platinum</button>
+  <button class="tab" data-tab="missables" role="tab" aria-selected="false">Missables</button>
+  <button class="tab" data-tab="sources" role="tab" aria-selected="false">Sources &amp; honesty</button>
+</nav>
+
+<main>
+  <section id="tab-checklist" class="tab-panel active" role="tabpanel">
+    <div class="toolbar">
+      <input id="search" type="search" placeholder="Search a trophy…" aria-label="Search trophies">
+      <label>Kind
+        <select id="kindFilter">
+          <option value="all">All kinds</option>
+          <option value="story">Story</option>
+          <option value="collectible">Collectibles</option>
+          <option value="activity">Activities</option>
+          <option value="misc">Misc</option>
+        </select>
+      </label>
+      <label>Grade
+        <select id="gradeFilter">
+          <option value="all">All grades</option>
+          <option value="platinum">Platinum</option>
+          <option value="gold">Gold</option>
+          <option value="silver">Silver</option>
+          <option value="bronze">Bronze</option>
+        </select>
+      </label>
+      <label class="check"><input type="checkbox" id="earnedOnly"> Earned only</label>
+      <label class="check"><input type="checkbox" id="unearnedOnly"> Unearned only</label>
+      <label class="check spoiler"><input type="checkbox" id="spoilerToggle"> Hide story spoilers</label>
+      <span class="spacer"></span>
+      <button id="exportBtn" type="button">Export progress</button>
+      <label class="import-btn">Import progress <input id="importFile" type="file" accept="application/json"></label>
+      <button id="resetBtn" type="button">Reset</button>
+    </div>
+    <p class="showing" id="showing">Showing 55 of 55</p>
+    <div class="checklist-layout">
+      <ol class="trophy-list" id="trophyList"></ol>
+      <aside class="detail" id="detailPanel" aria-live="polite">
+        <p class="detail-empty">Click a trophy to see its guide, sources and time estimate.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section id="tab-roadmap" class="tab-panel" role="tabpanel">
+    <h2>The road to platinum — six chapters, one save per chapter</h2>
+    <p class="lede">Play the story in order, start the missable meditation in Chapter 1, and save at the start of every chapter. The cleanup in Stage 6 is where the platinum is won.</p>
+    <div class="save-planner" id="savePlanner">
+      <h3>Save-slot planner — tick each save as you make it</h3>
+      <ol class="save-slots" id="saveSlots"></ol>
+      <p class="save-note">No mission replay. No New Game+. Never play with cheats on your trophy save. One clean save before the final mission is your safety net.</p>
+    </div>
+    <ol class="stages" id="stages"></ol>
+  </section>
+
+  <section id="tab-missables" class="tab-panel" role="tabpanel">
+    <h2>Missables — one trophy, one rule</h2>
+    <div class="missable-banner" id="missableBanner"></div>
+    <h3>The save rules that protect you</h3>
+    <ol class="save-rules">
+      <li><strong>Save at the start of every chapter</strong> — six manual saves, one per chapter, plus one clean save before the final mission.</li>
+      <li><strong>No mission replay.</strong> A missed moment cannot be replayed; your chapter save is the only way back.</li>
+      <li><strong>No New Game+.</strong> There is no second run that carries progress over — one save, one road.</li>
+      <li><strong>No cheats on the trophy save.</strong> Cheats can disable trophies; keep a separate fun save for chaos.</li>
+      <li><strong>Do the first meditation the morning after Down to Earth</strong> — Lucia on Jason's balcony, before Chapter 1 ends.</li>
+    </ol>
+    <h3>Meditation spots — <span id="medCount">0 / 18</span></h3>
+    <p class="lede">All 18 spots stay open for the whole game <em>except</em> the first one. Use the counter on the trophy to track them.</p>
+    <div class="counter-box" id="medCounter"></div>
+  </section>
+
+  <section id="tab-sources" class="tab-panel" role="tabpanel">
+    <h2>Sources &amp; honesty</h2>
+    <p class="lede">Every guide above is written in our own words for this entry. The facts it rests on are cited per trophy; the official names and descriptions are shown exactly as PlayStation publishes them.</p>
+    <div class="source-grid" id="sourceGrid"></div>
+    <h3>What we do not know yet</h3>
+    <ul class="honesty">
+      <li>The balcony meditation is reported as the first of 18 spots and as missable after Chapter 1 — the community agrees, but it is still <strong>unconfirmed</strong> whether it counts toward the 18 or is a separate scene. Meditate there anyway: it costs a minute and protects the trophy either way.</li>
+      <li>The trophy list is the official list as published on 18 November 2026 (Exophase and PSNProfiles agree on all 55 names, descriptions and grades). If Rockstar renames a trophy at launch, the names here are the ones PlayStation published.</li>
+      <li>Counts (42 Shooting Range challenges, 397 stunt spots, 52 areas) are the counts PlayStation tracks; the exact spots and courses are the community's working list.</li>
+      <li>Time estimates are our own judgment from the descriptions and the community's early playthroughs — your mileage will vary by a few hours either way.</li>
+      <li>No guide text here is copied from any source. Sources are cited, never copied.</li>
+    </ul>
+  </section>
+</main>
+<footer>
+  <p>Leonida Platinum Atlas — an unofficial fan guide for Grand Theft Auto VI on PlayStation 5. Not affiliated with Rockstar Games. Trophy names and descriptions © PlayStation / Rockstar Games, shown as published.</p>
+</footer>
+<script type="module" src="app.js"></script>
+</body>
+</html>
