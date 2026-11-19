@@ -84,11 +84,11 @@ function renderProgress() {
   document.getElementById('countGold').textContent = `${byGrade('gold')} / 2`;
   document.getElementById('countSilver').textContent = `${byGrade('silver')} / 6`;
   document.getElementById('countBronze').textContent = `${byGrade('bronze')} / 46`;
-  document.getElementById('hoursLeft').textContent = n >= 55 ? 'Platinum earned — Leonida Legend.' : `≈ ${hoursLeft()} h left to platinum`;
+  document.getElementById('hoursLeft').textContent = n >= 55 ? 'Platinum earned — Leonida Legend.' : `≈ ${Math.round(hoursLeft())} h left to platinum`;
   const nu = nextUp();
   document.getElementById('nextUp').textContent = n >= 55
     ? 'Next up: enjoy Leonida.'
-    : `Next up: ${nu.name} — Stage ${nu.stage} · ≈${nu.hours} h`;
+    : `Next up: ${nu.name} — Stage ${nu.stage} · ${nu.hours ? `≈${nu.hours} h` : 'passive'}`;
 }
 
 function kindLabel(t) {
@@ -139,7 +139,7 @@ function renderChecklist() {
     ds.textContent = desc;
     const meta = document.createElement('div');
     meta.className = 'trophy-meta';
-    meta.textContent = `${t.kind} · Stage ${t.stage} · ≈${t.hours} h${t.countTarget ? ` · ${state.counters[t.id] ?? 0} / ${t.countTarget} ${t.countUnit}` : ''}`;
+    meta.textContent = `${t.kind} · Stage ${t.stage} · ${t.hours ? `≈${t.hours} h` : 'passive'}${t.countTarget ? ` · ${state.counters[t.id] ?? 0} / ${t.countTarget} ${t.countUnit}` : ''}`;
     if (t.missable) {
       const flag = document.createElement('span');
       flag.className = 'missable-flag';
@@ -190,11 +190,6 @@ function openDetail(id) {
     p.textContent = 'Guide hidden until earned — turn the spoiler setting off to read it anyway.';
     panel.append(p);
   } else {
-    const gh = document.createElement('h4');
-    gh.textContent = 'How to get it';
-    const g = document.createElement('p');
-    g.className = 'guide';
-    g.textContent = t.guide;
     const sh = document.createElement('h4');
     sh.textContent = 'Sources';
     const sl = document.createElement('ul');
@@ -204,10 +199,15 @@ function openDetail(id) {
       li.textContent = s;
       sl.append(li);
     }
+    const gh = document.createElement('h4');
+    gh.textContent = 'How to get it';
+    const g = document.createElement('p');
+    g.className = 'guide';
+    g.textContent = t.guide;
     const hh = document.createElement('p');
     hh.className = 'hours';
-    hh.textContent = `Estimated time: ≈${t.hours} h · ${t.kind} · Stage ${t.stage}`;
-    panel.append(gh, g, sh, sl, hh);
+    hh.textContent = `Estimated time: ${t.hours ? `≈${t.hours} h` : 'passive — accumulates as you play'} · ${t.kind} · Stage ${t.stage}`;
+    panel.append(sh, sl, gh, g, hh);
   }
   if (t.countTarget) renderCounter(panel, t);
   const line = document.createElement('label');
@@ -400,10 +400,7 @@ async function init() {
   const tab = params.get('tab');
   if (tab && ['checklist', 'roadmap', 'missables', 'sources'].includes(tab)) switchTab(tab);
   const open = Number(params.get('open'));
-  if (open && trophyById(open)) {
-    openDetail(open);
-    document.querySelector('.trophy-row.selected')?.scrollIntoView({ block: 'center' });
-  }
+  if (open && trophyById(open)) openDetail(open); // detail panel is sticky: no scroll, the cover keeps its masthead
   requestAnimationFrame(() => { window.__shotReady = true; });
 }
 
